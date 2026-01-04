@@ -1,14 +1,16 @@
+import { View, Text } from "react-native";
 import { useContext } from "react";
-import { View, Text, Button } from "react-native";
 import { AuthContext } from "../context/AuthContext";
-export default function ProfileScreen() {
-const { user, logout } = useContext(AuthContext);
-return (
- <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
- <Text style={{ fontSize: 24 }}>Utilisateur : {user.username}</Text>
-  <Text style={{ fontSize: 24 }}>password : {user.password}</Text>
+import { ThemeContext } from "../context/ThemeContext";
 
- <Button title="Se déconnecter" onPress={logout} />
- </View>
-);
+export default function ProfileScreen() {
+  const { user } = useContext(AuthContext);
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <View style={{ flex: 1, padding: 20, backgroundColor: theme.background }}>
+      <Text style={{ fontSize: 22, color: theme.text }}>Profil</Text>
+      <Text style={{ color: theme.text }}>{user.email}</Text>
+    </View>
+  );
 }
